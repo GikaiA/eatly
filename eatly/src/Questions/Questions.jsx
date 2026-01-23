@@ -1,7 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import "./Questions.css";
 
 function Questions() {
+  // use state to hold answer choices
+  const [answers, setAnswers] = useState({
+    mood: '',
+    time: '',
+    budget: '',
+    company: '',
+    dietary: ''
+  });
+
+  //function to handle answer selection (question, answer is parameters)
+  const handleAnswer = (question, answer) => {
+    setAnswers({
+      ...answers,
+      [question]: answer
+    });
+  }
   return (
     <div className="questions">
       <h2>Questions</h2>
@@ -27,13 +43,21 @@ function Questions() {
         <button>Moderate (30 mins - 1 hour)</button>
         <button>Leisurely (over 1 hour)</button>
       </div>
-       <h3>Who are you dining with?</h3>
+      <h3>Who are you dining with?</h3>
       <div className="button-group">
         <button>Solo</button>
         <button>Partner/Date</button>
         <button>Family/Friends</button>
         <button>Large group</button>
       </div>
+      <h3>Any dietary restrictions?</h3>
+      <div className="button-group">
+        <button>None</button>
+        <button>Vegetarian</button>
+        <button>Vegan</button>
+        <button>Gluten-free</button>
+      </div>
+      <button>Find Resurantants</button>
     </div>
   );
 }
