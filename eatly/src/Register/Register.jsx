@@ -22,6 +22,8 @@ function Register() {
     }
   };
 
+  //Google Sign In function through Firebase
+
   return (
     <div className="register">
       <h2>Register</h2>
@@ -45,6 +47,8 @@ function Register() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Register</button>
+          <hr className="dashed">OR</hr>
+          <button> Sign In With Google</button>
         <p>If you have an account already, click <a href="/login">here</a></p>
       </form>
     </div>

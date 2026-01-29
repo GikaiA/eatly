@@ -11,7 +11,6 @@ function Login() {
   const navigate = useNavigate();
 
   //Login method
-
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
@@ -21,6 +20,10 @@ function Login() {
       console.error("Error logging in user: ", error);
     }
   };
+
+  //google function for logging in user
+
+  
 
   return (
     <div className="login">
@@ -40,6 +43,8 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button className="sign-in-button">Sign In</button>
+        <hr className="dashed">OR</hr>
+        <button> Sign In With Google</button>
         <p>
           If you have an account already, click <a href="/register">here</a>
         </p>
