@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import { auth } from "../firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 function Login() {
@@ -21,9 +21,19 @@ function Login() {
     }
   };
 
-  //google function for logging in user
+  //Google Sign In function through Firebase
 
-  
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    
+    try {
+      await signInWithPopup(auth, provider);
+      navigate("/questions");
+    } catch (error) {
+      setError('Google sign-in failed');
+      console.error("Google sign-in failed: ", error);
+    }
+  };
 
   return (
     <div className="login">
@@ -44,7 +54,7 @@ function Login() {
         />
         <button className="sign-in-button">Sign In</button>
         <hr className="dashed">OR</hr>
-        <button> Sign In With Google</button>
+        <button onClick={handleGoogleSignIn}> Sign In With Google</button>
         <p>
           If you have an account already, click <a href="/register">here</a>
         </p>

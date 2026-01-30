@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "./Register.css";
 import { auth } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithPopup,
+  GoogleAuthProvider,
+} from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
 function Register() {
@@ -23,6 +27,16 @@ function Register() {
   };
 
   //Google Sign In function through Firebase
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      // User is authenticated, just redirect
+      navigate("/questions");
+    } catch (error) {
+      console.error("Google sign-in failed: ", error);
+    }
+  };
 
   return (
     <div className="register">
@@ -47,9 +61,10 @@ function Register() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit">Register</button>
-          <hr className="dashed">OR</hr>
-          <button> Sign In With Google</button>
-        <p>If you have an account already, click <a href="/login">here</a></p>
+        <button onClick={handleGoogleSignIn}> Sign In With Google</button>
+        <p>
+          If you have an account already, click <a href="/login">here</a>
+        </p>
       </form>
     </div>
   );
