@@ -37,7 +37,8 @@ function Login() {
 
   return (
     <div className="login">
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleLogin} className="login-form">
+        <h1>Login to Eatly</h1>
         <label>Username or Email</label>
         <input
           type="text"
@@ -53,10 +54,10 @@ function Login() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button className="sign-in-button">Sign In</button>
-        <hr className="dashed">OR</hr>
+        {/* <hr className="dashed">OR</hr> */}
         <button onClick={handleGoogleSignIn}> Sign In With Google</button>
         <p>
-          If you have an account already, click <a href="/register">here</a>
+         Don't have an account? Click <a href="/register">here</a>
         </p>
       </form>
     </div>
