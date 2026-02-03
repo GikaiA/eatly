@@ -29,3 +29,15 @@
 .landing-title {
   color: white;
 }
+
+
+.info-section{
+  display: block;
+  text-align: center;
+  color: #4A4A4A ;
+}
+
+.info-sentence{
+  font-size: 28px;
+  margin-top: 20px;
+}
