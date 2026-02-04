@@ -1,6 +1,7 @@
 import React from "react";
 import "./Landing.css";
 import { Link } from "react-router-dom";
+import friends from "../assets/friends-eating.jpg";
 
 function Landing() {
   return (
@@ -18,11 +19,22 @@ function Landing() {
       </div>
       <div className="info-section">
         <h1 className="info-title">What is Eatly?</h1>
-        <p className="info-sentence">
-          Eatly is a platform that helps you find the perfect meal for your
-          mood. Answer a few questions about your preferences and discover
-          restaurants that match your vibe.
-        </p>
+        <div className="sub-info-section">
+          <img
+            src={friends}
+            alt="Friends eating together"
+            className="info-image"
+          />
+          <p className="info-sentence">
+            Eatly is a platform that helps you find the perfect meal for your
+            mood. Answer a few questions about your preferences and discover
+            restaurants that match your vibe.
+          </p>
+        </div>
+      </div>
+      <div className="how-section">
+        <h1 className="how-title">How It Works</h1>
+
       </div>
     </div>
   );
