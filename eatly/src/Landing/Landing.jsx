@@ -57,6 +57,12 @@ function Landing() {
     </div>
   </div>
 </div>
+<div className="get-started-section">
+  <h2>Want to find some reccommendations?</h2>
+  <p className="mood-sentence">Let the mood guide you to the perfect meal.</p>
+  <button className="get-started-button">Get Started</button>
+  <p>Already have an account? Click <Link to="/login">here</Link></p>
+</div>
       </div>
   );
 }

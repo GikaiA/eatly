@@ -1,3 +1,12 @@
-.login-form{
-    background-color: red;
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.login-form {
+  display: grid;
+  background-color: white;
+  padding: 20px 20px 20px 20px;
 }
