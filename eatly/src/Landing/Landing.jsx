@@ -33,10 +33,31 @@ function Landing() {
         </div>
       </div>
       <div className="how-section">
-        <h1 className="how-title">How It Works</h1>
-
-      </div>
+        <h2 className="how-title">How It Works</h2>
+  <div className="steps-container">
+    <div className="step">
+      <div className="step-number">1</div>
+      <h3>Tell us your mood</h3>
+      <p>Share how you're feeling right now</p>
     </div>
+    <div className="step">
+      <div className="step-number">2</div>
+      <h3>Answer quick questions</h3>
+      <p>Budget, time, dining companions</p>
+    </div>
+    <div className="step">
+      <div className="step-number">3</div>
+      <h3>Get recommendations</h3>
+      <p>We match restaurants to your vibe</p>
+    </div>
+    <div className="step">
+      <div className="step-number">4</div>
+      <h3>Discover your meal</h3>
+      <p>Find the perfect spot near you</p>
+    </div>
+  </div>
+</div>
+      </div>
   );
 }
 
