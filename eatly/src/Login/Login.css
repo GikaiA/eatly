@@ -1,12 +1,91 @@
+.split {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+/* Control the left side */
+.left {
+  background-image: url("../assets/food3.jpg");
+  background-position: 0px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  left: 0;
+  background-color: #111;
+}
+
+/* Control the right side */
+.right {
+  right: 0;
+}
+
 .login {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  text-align: center;
+  display: flex;
+  gap: 20px;
+}
+
+label{
+  font-size: 20px;
 }
 
 .login-form {
   display: grid;
   background-color: white;
   padding: 20px 20px 20px 20px;
+  border-radius: 8px;
+}
+
+.login-field {
+  width: 500px;
+  max-width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+  color: #666;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid #ccc;
+}
+
+.divider span {
+  padding: 0 10px;
+  font-weight: 500;
+}
+
+.sign-in-button, .google-button{
+  background-color:#d4744a;
+  border: none;
+  border-radius: 8px;
+  border-color: transparent;
+  font-size: 22px;
+  color: white;
+  font-weight: bold;
+}
+
+.register-link {
+  margin-top: 20px;
+  font-size: 16px;
 }

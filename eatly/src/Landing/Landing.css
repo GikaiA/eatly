@@ -113,6 +113,7 @@
 .get-started-section{
   display: block;
   text-align: center;
+  height:20vh;
 }
 
 .mood-sentence{
