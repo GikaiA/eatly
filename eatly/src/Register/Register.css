@@ -1,4 +1,48 @@
-.dashed{
-    border-top: 3px dashed #bbb;
+.register {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
+.register-form {
+  display: grid;
+  background-color: white;
+  padding: 20px 20px 20px 20px;
+  border-radius: 8px;
+}
+
+.register-title {
+  text-align: center;
+}
+
+.register-field {
+  width: 500px;
+  max-width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+}
+
+.register-button{
+    background-color: #d4744a;
+    border: 1px solid;
+    border-radius: 8px;
+    font-size: 20px;
+    border-color: transparent;
+    color: white;
+    font-weight: bold;
+}
+
+.register-link {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+a {
+  text-decoration: none !important;
+  cursor: pointer;
 }

@@ -6,7 +6,8 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
 
 function Login() {
   //variables for email and password
@@ -48,10 +49,10 @@ function Login() {
         <div className="login">
           <form onSubmit={handleLogin} className="login-form">
             <h1>Login to Eatly</h1>
-            <label>Username or Email</label>
+            <label>Email</label>
             <input
               type="text"
-              placeholder="Username or Email"
+              placeholder="Email"
               className="login-field"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -68,9 +69,15 @@ function Login() {
             <div className="divider">
               <span>OR</span>
             </div>
-            <button onClick={handleGoogleSignIn} className="google-button"> Sign In With Google</button>
+            <div className="google-section">
+              <button onClick={handleGoogleSignIn} className="google-button">
+                {" "}
+                <FaGoogle className="icon"/>
+                Sign In With Google
+              </button>
+            </div>
             <p className="register-link">
-              Don't have an account? Click <a href="/register">here</a>
+              Don't have an account? Click <Link to ="/register">here</Link>
             </p>
           </form>
         </div>

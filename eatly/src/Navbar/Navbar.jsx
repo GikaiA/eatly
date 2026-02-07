@@ -1,27 +1,62 @@
-import React from 'react';
-import './Navbar.css';
-import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
-
+import React, { useState, useEffect } from "react";
+import "./Navbar.css";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import { auth } from "../firebase";
+import { signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 function NavMenu() {
-  return (
-<>
-  <Navbar expand="lg" fixed='top'  variant="light" className="custom-navbar">
-      <Container>
-        <Navbar.Brand href="/" className='nav-title'>Eatly</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-           <button className='navbar-button'><Nav.Link href="/login">Login</Nav.Link></button> 
-            <button className='navbar-button'><Nav.Link href="/register">Register</Nav.Link></button>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-</>
-  )
-};
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
-export default NavMenu
+  // Listen for auth state changes
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((currentUser) => {
+      setUser(currentUser); // Set user if logged in, null if not
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
+
+  return (
+    <>
+  <Navbar className="custom-navbar" expand="lg">
+      <Navbar.Brand href="/" className="nav-title">Eatly</Navbar.Brand>
+      <Navbar.Toggle />
+      <Navbar.Collapse>
+        <Nav className="ms-auto">
+          {/* <Nav.Link href="/">Home</Nav.Link> */}
+          
+          {/* Show these ONLY if user is logged in */}
+          {user ? (
+            <>
+              <Nav.Link href="/questions">Find Food</Nav.Link>
+              <Nav.Link href="/profile">Profile</Nav.Link>
+              <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+            </>
+          ) : (
+            // Show these ONLY if user is NOT logged in
+            <>
+              <Nav.Link href="/login">Login</Nav.Link>
+              <Nav.Link href="/register">Register</Nav.Link>
+            </>
+          )}
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+    </>
+  );
+}
+
+export default NavMenu;

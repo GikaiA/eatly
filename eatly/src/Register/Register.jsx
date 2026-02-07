@@ -6,7 +6,9 @@ import {
   signInWithPopup,
   GoogleAuthProvider,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { FaGoogle } from "react-icons/fa";
+
 
 function Register() {
   // state variables for email and password
@@ -40,8 +42,8 @@ function Register() {
 
   return (
     <div className="register">
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
+      <form onSubmit={handleRegister} className="register-form">
+        <h2 className="register-title">Register</h2>
         {/* <label>First Name</label>
         <input type="text" placeholder="First Name" />
         <label>Last Name</label>
@@ -52,6 +54,7 @@ function Register() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          className="register-field"
         />
         <label>Password</label>
         <input
@@ -59,11 +62,15 @@ function Register() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          className="register-field"
         />
-        <button type="submit">Register</button>
-        <button onClick={handleGoogleSignIn}> Sign In With Google</button>
-        <p>
-          If you have an account already, click <a href="/login">here</a>
+        <button type="submit" className="register-button">Create Account</button>
+        <div className="divider">
+          <span>OR</span>
+        </div>
+        <button onClick={handleGoogleSignIn} className="google-button"><FaGoogle className="icon"/> Sign In With Google</button>
+        <p className="register-link">
+          If you have an account already, click <Link to="/login">here</Link>
         </p>
       </form>
     </div>
