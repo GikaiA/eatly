@@ -31,30 +31,42 @@ function NavMenu() {
 
   return (
     <>
-  <Navbar className="custom-navbar" expand="lg">
-      <Navbar.Brand href="/" className="nav-title">Eatly</Navbar.Brand>
-      <Navbar.Toggle />
-      <Navbar.Collapse>
-        <Nav className="ms-auto">
-          {/* <Nav.Link href="/">Home</Nav.Link> */}
-          
-          {/* Show these ONLY if user is logged in */}
-          {user ? (
-            <>
-              <Nav.Link href="/questions">Find Food</Nav.Link>
-              <Nav.Link href="/profile">Profile</Nav.Link>
-              <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
-            </>
-          ) : (
-            // Show these ONLY if user is NOT logged in
-            <>
-              <Nav.Link href="/login">Login</Nav.Link>
-              <Nav.Link href="/register">Register</Nav.Link>
-            </>
-          )}
-        </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+      <Navbar className="custom-navbar" expand="lg">
+        <Navbar.Brand href="/" className="nav-title">
+          Eatly
+        </Navbar.Brand>
+        <Navbar.Toggle />
+        <Navbar.Collapse>
+          <Nav className="ms-auto">
+            {/* <Nav.Link href="/">Home</Nav.Link> */}
+
+            {/* Show these ONLY if user is logged in */}
+            {user ? (
+              <>
+                <Nav.Link href="/questions" className="navbar-button">
+                  Find Food
+                </Nav.Link>
+                <Nav.Link href="/profile" className="navbar-button">
+                  Profile
+                </Nav.Link>
+                <Nav.Link onClick={handleLogout} className="navbar-button">
+                  Logout
+                </Nav.Link>
+              </>
+            ) : (
+              // Show these ONLY if user is NOT logged in
+              <>
+                <Nav.Link href="/login" className="navbar-button">
+                  Login
+                </Nav.Link>
+                <Nav.Link href="/register" className="navbar-button">
+                  Register
+                </Nav.Link>
+              </>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
     </>
   );
 }

@@ -6,6 +6,7 @@
     font-weight: bold;
     font-size: 32px !important;
     color: white !important;
+    padding-left: 20px;
 }
 
 
@@ -15,6 +16,7 @@
     border: none;
     padding: 8px 16px;
     border-radius: 4px;
+    font-size: 20px !important;
 }   
 
 .nav-link{

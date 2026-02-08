@@ -7,6 +7,7 @@ import Login from './Login/Login.jsx';
 import Questions from './Questions/Questions.jsx';
 import Results from './Results/Results.jsx'
 import Navbar from './Navbar/Navbar.jsx';
+import Profile from './Profile/Profile.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -21,10 +22,12 @@ function App() {
       <Route path = '/login' element={<Login/>}/>
       <Route path = '/questions' element={<Questions/>}/>
       <Route path = '/results' element={<Results/>}/>
+      <Route path='/profile' element={<Profile/>}/>
      </Routes>
      </BrowserRouter>
     </>
   )
 }
+
 
 export default App

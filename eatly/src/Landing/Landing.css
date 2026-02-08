@@ -7,13 +7,14 @@
 .bg-section {
   position: relative;
   background-image: url("../assets/food2.jpg");
-  height: 100vh;
+  height: 75vh;
   width: 100%;
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   z-index: 1;
+  opacity: 0.9;
 }
 
 .hero-section {
@@ -24,10 +25,29 @@
   color: white;
   font-size: 48px;
   z-index: 2;
+  text-align: center;
 }
 
-.landing-title {
+.hero-title {
+  font-size: 48px;
+  font-weight: bold;
   color: white;
+}
+
+.hero-sentence {
+  font-size: 30px;
+  color: white;
+  margin-top: 20px;
+}
+
+.hero-btn{
+  margin-top: 30px;
+  padding: 12px 24px;
+  font-size: 20px;
+  border-radius: 8px;
+  background-color: #e07a3f;
+  color: white;
+  border: none;
 }
 
 .info-section {
@@ -128,4 +148,12 @@
   font-weight: bold;
   color: white;
   border: none;
+}
+
+.get-started {
+  padding-top: 10px;
+}
+
+.link{
+  text-decoration: none;
 }

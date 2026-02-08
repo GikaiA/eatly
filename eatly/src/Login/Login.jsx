@@ -42,9 +42,7 @@ function Login() {
 
   return (
     <>
-      <div className="split left">
-        <p className="login-image">an image will be placed here</p>
-      </div>
+      <div className="split left"></div>
       <div className="split right">
         <div className="login">
           <form onSubmit={handleLogin} className="login-form">
@@ -72,12 +70,12 @@ function Login() {
             <div className="google-section">
               <button onClick={handleGoogleSignIn} className="google-button">
                 {" "}
-                <FaGoogle className="icon"/>
+                <FaGoogle className="icon" />
                 Sign In With Google
               </button>
             </div>
             <p className="register-link">
-              Don't have an account? Click <Link to ="/register">here</Link>
+              Don't have an account? Click <Link to="/register">here</Link>
             </p>
           </form>
         </div>

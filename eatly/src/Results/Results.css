@@ -1,0 +1,33 @@
+.results{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.results-title{
+    font-size: 45px;
+    font-weight: bold;
+    color: #4a4a4a;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.results-section{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.results-name{
+    font-size: 30px;
+    color: #4a4a4a;
+}
+
+.price{
+    font-size: 20px;
+    color: #4a4a4a;
+}

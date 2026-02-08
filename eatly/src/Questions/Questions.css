@@ -1,0 +1,51 @@
+.questions{
+  position: absolute;       
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.question-title{
+    font-size: 48px;
+    font-weight: bold;
+    color: #4a4a4a;
+    margin-bottom: 30px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+
+button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 21px !important;
+  border-radius: 8px !important;
+  background-color: #d4744a;
+  color: white;
+  font-weight: bold;
+  border: none;
+  margin-left: 10px;
+  transition-duration: 0.3s;
+}
+
+button.selected  {
+  background-color: #a85c3a !important;
+}
+
+.find-restaurants-button{
+    margin-top: 15px;
+    background-color: #d4744a;
+    border: 1px solid;
+    border-radius: 8px;
+    font-size: 20px;
+    border-color: transparent;
+    color: white;
+    font-weight: bold;
+}

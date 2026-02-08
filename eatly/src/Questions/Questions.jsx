@@ -16,12 +16,21 @@ function Questions() {
   });
 
   //function to handle answer selection (question, answer is parameters)
-  const handleAnswer = (question, answer) => {
+  const handleAnswer = (question, value) => {
+    // If they click the same button that's already selected, clear it
+  if (answers[question] === value) {
     setAnswers({
       ...answers,
-      [question]: answer,
+      [question]: '' // Deselect by setting to empty string
     });
-  };
+  } else {
+    // Otherwise, select the new button
+    setAnswers({
+      ...answers,
+      [question]: value
+    });
+  }
+};
 
   //see results, including navigation
   const handleSubmit = () => {
@@ -29,7 +38,7 @@ function Questions() {
   };
   return (
     <div className="questions">
-      <h2>Questions</h2>
+      <h2 className="question-title">Questions</h2>
       <h3>How are you feeling right now?</h3>
       <div className="button-group">
         {/* button group with handleAnswer function. updates mood field */}
@@ -53,25 +62,24 @@ function Questions() {
           Tired
         </button>
       </div>
-      <br></br>
       <h3>How much time do you have?</h3>
       <div className="button-group">
         {/* button group with similar funciton, updates time field */}
         <button
           onClick={() => handleAnswer("time", "Quick")}
-          className={answers.mood === "Quick bite" ? "selected" : ""}
+          className={answers.time === "Quick" ? "selected" : ""}
         >
           Quick bite (under 30 mins)
         </button>
         <button
           onClick={() => handleAnswer("time", "Moderate")}
-          className={answers.mood === "Moderate" ? "selected" : ""}
+          className={answers.time === "Moderate" ? "selected" : ""}
         >
           Moderate (30 mins - 1 hour)
         </button>
         <button
           onClick={() => handleAnswer("time", "Leisure")}
-          className={answers.mood === "Leisure" ? "selected" : ""}
+          className={answers.time === "Leisure" ? "selected" : ""}
         >
           Leisurely (over 1 hour)
         </button>
@@ -81,19 +89,19 @@ function Questions() {
         {/* button group with similar function, updates budget field */}
         <button
           onClick={() => handleAnswer("budget", "Cheap")}
-          className={answers.mood === "Cheap" ? "selected" : ""}
+          className={answers.budget === "Cheap" ? "selected" : ""}
         >
           Cheap
         </button>
         <button
           onClick={() => handleAnswer("budget", "Moderate")}
-          className={answers.mood === "Moderate" ? "selected" : ""}
+          className={answers.budget === "Moderate" ? "selected" : ""}
         >
           Moderate
         </button>
         <button
           onClick={() => handleAnswer("budget", "Expensive")}
-          className={answers.mood === "Expensive" ? "selected" : ""}
+          className={answers.budget === "Expensive" ? "selected" : ""}
         >
           Expensive
         </button>
@@ -103,25 +111,25 @@ function Questions() {
         {/* button group with previous function, updates company field */}
         <button
           onClick={() => handleAnswer("company", "Solo")}
-          className={answers.mood === "Stressed" ? "selected" : ""}
+          className={answers.company === "Solo" ? "selected" : ""}
         >
           Solo
         </button>
         <button
           onClick={() => handleAnswer("company", "Date")}
-          className={answers.mood === "Stressed" ? "selected" : ""}
+          className={answers.company === "Date" ? "selected" : ""}
         >
           Partner/Date
         </button>
         <button
           onClick={() => handleAnswer("company", "Family")}
-          className={answers.mood === "Stressed" ? "selected" : ""}
+          className={answers.company === "Family" ? "selected" : ""}
         >
           Family/Friends
         </button>
         <button
           onClick={() => handleAnswer("company", "Group")}
-          className={answers.mood === "Stressed" ? "selected" : ""}
+          className={answers.company === "Group" ? "selected" : ""}
         >
           Large group
         </button>
@@ -133,7 +141,7 @@ function Questions() {
         <button>Vegan</button>
         <button>Gluten-free</button>
       </div> */}
-      <button onClick={handleSubmit}>Find Resurantants</button>
+      <button onClick={handleSubmit} className="find-restaurants-button">Find Resurantants</button>
     </div>
   );
 }
