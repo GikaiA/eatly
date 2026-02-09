@@ -1,12 +1,10 @@
 .results{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+  display: block;
+  text-align: center;
 }
 
 .results-title{
-    font-size: 45px;
+    font-size: 35px;
     font-weight: bold;
     color: #4a4a4a;
     margin-bottom: 30px;
@@ -16,9 +14,10 @@
 .results-section{
     display: flex;
     justify-content: center;
-    flex-direction: column;
+    flex-direction: row; 
     align-items: center;
-    gap: 20px;
+    gap: 30px;
+    padding-top: 10px;
 }
 
 

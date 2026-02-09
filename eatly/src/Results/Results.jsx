@@ -1,24 +1,32 @@
-import React from "react";
+import { useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { auth, db } from "../firebase";
+import { doc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 import "./Results.css";
-import { useLocation, Link } from "react-router-dom";
 
 function Results() {
-  const location = useLocation(); //passed from Questions page
-  const answers = location.state?.answers; // gets the answer object
+  const location = useLocation();
+  const navigate = useNavigate();
+  const answers = location.state?.answers;
+  const [savedIds, setSavedIds] = useState([]);
 
-  //dummy data for restaurants
+  // Dummy restaurant data
   const dummyRestaurants = [
     {
       id: 1,
       name: "Joe's Comfort Diner",
-      tags: ["comfort", "cozy", "quick"],
+      cuisine: "American",
+      tags: ["comfort", "cozy", "casual", "quick", "family-friendly"],
       priceLevel: 2,
+      location: "Downtown",
     },
     {
       id: 2,
       name: "Sakura Sushi",
-      tags: ["upscale", "celebratory"],
+      cuisine: "Japanese",
+      tags: ["upscale", "celebratory", "adventurous", "quiet"],
       priceLevel: 3,
+      location: "Midtown",
     },
     {
       id: 3,
@@ -184,37 +192,141 @@ function Results() {
     },
   ];
 
+  // Filter restaurants based on answers
   const filterRestaurants = (restaurants, answers) => {
-    // Convert answers to tags
+    if (!answers) return [];
+
     let requiredTags = [];
 
+    // Convert mood to tags
     if (answers.mood === "Stressed") requiredTags.push("comfort", "cozy");
     if (answers.mood === "Happy") requiredTags.push("celebratory", "upscale");
     if (answers.mood === "Tired") requiredTags.push("quick", "casual");
+    if (answers.mood === "Adventurous")
+      requiredTags.push("adventurous", "exotic");
+    if (answers.mood === "Celebratory")
+      requiredTags.push("celebratory", "upscale");
+    if (answers.mood === "Casual/Relaxed") requiredTags.push("casual", "cozy");
 
+    // Convert time to tags
     if (answers.time === "Quick") requiredTags.push("quick", "fast");
+    if (answers.time === "Moderate") requiredTags.push("moderate", "casual");
+    if (answers.time === "Leisurely") requiredTags.push("upscale", "quiet");
 
-    // Filter restaurants
+    // Convert dining companion to tags
+    if (answers.dining === "Solo") requiredTags.push("casual", "quiet");
+    if (answers.dining === "Partner/Date")
+      requiredTags.push("romantic", "quiet");
+    if (answers.dining === "Friends") requiredTags.push("lively", "casual");
+    if (answers.dining === "Family") requiredTags.push("family-friendly");
+    if (answers.dining === "Large group")
+      requiredTags.push("group-friendly", "lively");
+
+    // Map budget to price level
+    let maxPrice = 4;
+    if (answers.budget === "$") maxPrice = 1;
+    if (answers.budget === "$$") maxPrice = 2;
+    if (answers.budget === "$$$") maxPrice = 3;
+    if (answers.budget === "$$$$") maxPrice = 4;
+
     return restaurants.filter((restaurant) => {
-      // Does this restaurant have any of the required tags?
-      return restaurant.tags.some((tag) => requiredTags.includes(tag));
+      const hasMatchingTag = restaurant.tags.some((tag) =>
+        requiredTags.includes(tag)
+      );
+      const withinBudget = restaurant.priceLevel <= maxPrice;
+
+      return hasMatchingTag && withinBudget;
     });
   };
 
   const filteredRestaurants = filterRestaurants(dummyRestaurants, answers);
 
+  // Check which restaurants are already saved
+  useState(() => {
+    const checkSavedRestaurants = async () => {
+      const user = auth.currentUser;
+      if (user) {
+        try {
+          const userDoc = await getDoc(doc(db, "users", user.uid));
+          if (userDoc.exists() && userDoc.data().savedRestaurants) {
+            const saved = userDoc.data().savedRestaurants.map((r) => r.id);
+            setSavedIds(saved);
+          }
+        } catch (error) {
+          console.error("Error checking saved restaurants:", error);
+        }
+      }
+    };
+    checkSavedRestaurants();
+  }, []);
+
+  const handleSaveRestaurant = async (restaurant) => {
+    const user = auth.currentUser;
+
+    if (!user) {
+      alert("Please log in to save restaurants");
+      navigate("/login");
+      return;
+    }
+
+    try {
+      await updateDoc(doc(db, "users", user.uid), {
+        savedRestaurants: arrayUnion(restaurant),
+      });
+
+      setSavedIds([...savedIds, restaurant.id]);
+      alert("Restaurant saved!");
+    } catch (error) {
+      console.error("Error saving restaurant:", error);
+      alert("Failed to save restaurant");
+    }
+  };
+
+  if (!answers) {
+    return (
+      <div className="results">
+        <h2>No Results</h2>
+        <p>Please complete the questionnaire first.</p>
+        <button onClick={() => navigate("/questions")}>Go to Questions</button>
+      </div>
+    );
+  }
+
   return (
     <div className="results">
-      {" "}
-      <h2 className="results-title">Your Results</h2>
-      {/* displaying data from restaurants based on choices */}
-      {filteredRestaurants.map((restaurant) => (
-        <div key={restaurant.id} className="results-section">
-          <h3 className="results-name">{restaurant.name}</h3>
-          <p className="price">Price: {"$".repeat(restaurant.priceLevel)}</p>
+      <h2>Your Restaurant Recommendations</h2>
+
+      {filteredRestaurants.length > 0 ? (
+        <div className="restaurant-grid">
+          {filteredRestaurants.map((restaurant) => (
+            <div key={restaurant.id} className="restaurant-card">
+              <h3>{restaurant.name}</h3>
+              <p className="cuisine">{restaurant.cuisine}</p>
+              <p className="price">{"$".repeat(restaurant.priceLevel)}</p>
+              <p className="location">📍 {restaurant.location}</p>
+
+              <button
+                onClick={() => handleSaveRestaurant(restaurant)}
+                disabled={savedIds.includes(restaurant.id)}
+                className={
+                  savedIds.includes(restaurant.id) ? "saved-btn" : "save-btn"
+                }
+              >
+                {savedIds.includes(restaurant.id)
+                  ? "✓ Saved"
+                  : "Save Restaurant"}
+              </button>
+            </div>
+          ))}
         </div>
-      ))}
-      <Link to="/questions">Find New Results</Link>
+      ) : (
+        <div className="no-results">
+          <p>
+            No restaurants match your preferences. Try adjusting your answers!
+          </p>
+          <button onClick={() => navigate("/questions")}>Try Again</button>
+        </div>
+      )}
     </div>
   );
 }
