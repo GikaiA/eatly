@@ -27,14 +27,14 @@
   background-color: #ffffff;
 }
 
-.register-button{
-    background-color: #d4744a;
-    border: 1px solid;
-    border-radius: 8px;
-    font-size: 20px;
-    border-color: transparent;
-    color: white;
-    font-weight: bold;
+.register-button {
+  background-color: #d4744a;
+  border: 1px solid;
+  border-radius: 8px;
+  font-size: 20px;
+  border-color: transparent;
+  color: white;
+  font-weight: bold;
 }
 
 .register-link {
@@ -46,4 +46,64 @@
 a {
   text-decoration: none !important;
   cursor: pointer;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+/* Tablets and smaller (768px and below) */
+@media (max-width: 768px) {
+  .register {
+    width: 90%;
+    max-width: 500px;
+    z-index: -1;
+    margin-top: 30px;
+  }
+
+  .register-form {
+    padding: 20px;
+  }
+
+  .register-field {
+    width: 100%;
+    font-size: 16px;
+  }
+
+  .register-button {
+    font-size: 18px;
+  }
+
+  .register-title {
+    font-size: 24px;
+  }
+}
+
+/* Mobile phones (480px and below) */
+@media (max-width: 480px) {
+  .register {
+    width: 95%;
+    padding: 0 10px;
+  }
+
+  .register-form {
+    padding: 15px;
+  }
+
+  .register-field {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .register-button {
+    font-size: 16px;
+    padding: 10px;
+  }
+
+  .register-title {
+    font-size: 20px;
+  }
+
+  .register-link {
+    font-size: 14px;
+  }
 }

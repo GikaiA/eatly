@@ -1,16 +1,16 @@
-.questions{
-  position: absolute;       
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+.questions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
-.question-title{
-    font-size: 48px;
-    font-weight: bold;
-    color: #4a4a4a;
-    margin-bottom: 30px;
+.question-title {
+  font-size: 48px;
+  font-weight: bold;
+  color: #4a4a4a;
+  margin-bottom: 30px;
 }
 
 .button-group {
@@ -20,7 +20,6 @@
   margin-top: 25px;
   margin-bottom: 25px;
 }
-
 
 button {
   margin-top: 20px;
@@ -35,17 +34,95 @@ button {
   transition-duration: 0.3s;
 }
 
-button.selected  {
+button.selected {
   background-color: #a85c3a !important;
 }
 
-.find-restaurants-button{
+.find-restaurants-button {
+  margin-top: 15px;
+  background-color: #d4744a;
+  border: 1px solid;
+  border-radius: 8px;
+  font-size: 20px;
+  border-color: transparent;
+  color: white;
+  font-weight: bold;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+/* Tablets and smaller (768px and below) */
+@media (max-width: 768px) {
+  .questions {
+    width: 95%;
+    padding: 20px 10px;
+  }
+
+  .question-title {
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .button-group {
+    display: block;
+    gap: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    font-size: 18px !important;
+    padding: 10px 20px;
+    margin-left: 5px;
+    
+  }
+
+  .find-restaurants-button {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+}
+
+/* Mobile phones (480px and below) */
+@media (max-width: 480px) {
+  .questions {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    padding: 20px 15px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .question-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
     margin-top: 15px;
-    background-color: #d4744a;
-    border: 1px solid;
-    border-radius: 8px;
-    font-size: 20px;
-    border-color: transparent;
-    color: white;
-    font-weight: bold;
+    margin-bottom: 15px;
+  }
+
+  button {
+    font-size: 16px !important;
+    padding: 10px 15px;
+    margin-left: 0;
+    width: 100%;
+    max-width: 300px;
+    margin: 5px auto;
+  }
+
+  .find-restaurants-button {
+    font-size: 16px;
+    padding: 10px 20px;
+    width: 100%;
+    max-width: 300px;
+  }
 }

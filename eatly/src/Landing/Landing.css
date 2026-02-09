@@ -40,7 +40,7 @@
   margin-top: 20px;
 }
 
-.hero-btn{
+.hero-btn {
   margin-top: 30px;
   padding: 12px 24px;
   font-size: 20px;
@@ -130,18 +130,18 @@
   color: #2c2c2c;
 }
 
-.get-started-section{
+.get-started-section {
   display: block;
   text-align: center;
-  height:20vh;
+  height: 20vh;
 }
 
-.mood-sentence{
+.mood-sentence {
   font-size: 18px;
   color: #2c2c2c;
 }
 
-.get-started-button{
+.get-started-button {
   font-size: 22px;
   border-radius: 8px;
   background-color: #e07a3f;
@@ -154,6 +154,127 @@
   padding-top: 10px;
 }
 
-.link{
+.link {
   text-decoration: none;
+}
+
+/* Tablets and smaller (768px and below) */
+@media (max-width: 768px) {
+  .bg-section {
+    height: 60vh;
+    background-attachment: scroll; /* Fixed backgrounds don't work well on mobile */
+  }
+
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .hero-sentence {
+    font-size: 20px;
+  }
+
+  .hero-btn {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+
+  .info-sentence {
+    font-size: 28px;
+  }
+
+  .info-image {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .sub-info-section {
+    flex-direction: column;
+  }
+
+  .how-title {
+    font-size: 28px;
+  }
+
+  .steps-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .step {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .get-started-button {
+    font-size: 20px;
+    padding: 10px 24px;
+  }
+}
+
+/* Mobile phones (480px and below) */
+@media (max-width: 480px) {
+  .bg-section {
+    height: 50vh;
+  }
+
+  .hero-section {
+    padding: 0 15px;
+  }
+
+  .hero-title {
+    font-size: 24px;
+  }
+
+  .hero-sentence {
+    font-size: 16px;
+    margin-top: 15px;
+  }
+
+  .hero-btn {
+    font-size: 16px;
+    padding: 10px 18px;
+    margin-top: 20px;
+  }
+
+  .info-sentence {
+    font-size: 22px;
+    padding: 10px 15px;
+  }
+
+  .how-title {
+    font-size: 24px;
+  }
+
+  .how-section {
+    padding: 30px 15px;
+  }
+
+  .step-number {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .step h3 {
+    font-size: 18px;
+  }
+
+  .step p {
+    font-size: 16px;
+  }
+
+  .mood-sentence {
+    font-size: 16px;
+  }
+
+  .get-started-button {
+    font-size: 18px;
+    padding: 10px 20px;
+  }
+
+  .get-started-section {
+    padding: 30px 15px;
+  }
 }

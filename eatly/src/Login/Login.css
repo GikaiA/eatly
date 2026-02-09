@@ -102,3 +102,96 @@ a {
   text-decoration: none !important;
   cursor: pointer;
 }
+
+/* MOBILE RESPONSIVENESS */
+
+/* Tablets and smaller (768px and below) */
+@media (max-width: 768px) {
+  .split {
+    width: 85%;
+    position: relative;
+    height: auto;
+  }
+
+  .left {
+    display: none;
+  }
+
+  .right {
+    width: 100%;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    max-width: 500px;
+    padding: 20px 0;
+  }
+
+  .login-form {
+    padding: 20px;
+  }
+
+  .login-field {
+    width: 100%;
+  }
+
+  label {
+    font-size: 18px;
+  }
+
+  .sign-in-button,
+  .google-button {
+    font-size: 20px;
+  }
+}
+
+/* Mobile phones (480px and below) */
+@media (max-width: 480px) {
+  .login {
+    width: 95%;
+    padding: 10px;
+    left: 0;
+    display: block;
+  }
+
+  .login-form {
+    padding: 15px;
+  }
+
+  .login-field {
+    width: 100%;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  label {
+    font-size: 16px;
+  }
+
+  .sign-in-button,
+  .google-button {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .icon {
+    width: 30px;
+    height: 20px;
+  }
+
+  .register-link {
+    font-size: 14px;
+  }
+
+  .divider {
+    margin: 15px 0;
+  }
+}

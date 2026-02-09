@@ -1,6 +1,32 @@
 .profile {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+ display: block;
+  text-align: center;
+  color: #4a4a4a;
+}
+
+
+.saved-restaurants-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.info-label, .value {
+  font-size: 21px;
+}
+
+.account-info {
+  font-size: 18px;
+  font-weight: bold;
+  color: #4a4a4a;
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+
+.account-field {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
