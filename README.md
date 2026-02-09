@@ -32,3 +32,9 @@ _Link coming soon_
 1. Clone the repository:
    ```bash
    git clone https://github.com/your-username/eatly.git
+## 🚧 Future Improvements
+- Expanded mood categories
+- User profiles and favorites
+- Restaurant ratings and reviews
+- Improved recommendation logic
+- Integration with a real-world restaurant API (e.g., Yelp, Google Places) to provide live and location-based restaurant data
