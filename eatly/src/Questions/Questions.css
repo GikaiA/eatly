@@ -93,9 +93,6 @@ button.selected {
     width: 100%;
     padding: 20px 15px;
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
   }
 
   .question-title {
@@ -124,5 +121,6 @@ button.selected {
     padding: 10px 20px;
     width: 100%;
     max-width: 300px;
+    text-align: center;
   }
 }

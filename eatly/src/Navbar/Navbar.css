@@ -22,3 +22,10 @@
 .nav-link{
     color: white !important;
 }
+
+
+@media (max-width: 480px) {
+    .ms-auto{
+        text-align: center !important;
+    }
+}
