@@ -16,6 +16,7 @@
   background-size: cover;
   left: 0;
   background-color: #111;
+  z-index: -1;
 }
 
 /* Control the right side */

@@ -9,7 +9,7 @@ import {
 import { useNavigate, Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 
-async function Login() {
+function Login() {
   //variables for email and password
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
