@@ -1,5 +1,32 @@
-
-body{
+body {
   height: 100vh;
   background-color: beige !important;
+}
+
+button,
+.question-button,
+.hero-btn,
+.sign-in-button,
+.google-button,
+.register-button,
+.save-btn,
+.remove-btn {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+button {
+  position: relative;
+  z-index: 10;
+}
+
+input,
+.login-field,
+.register-field,
+.account-field {
+  font-size: 16px !important; /* iOS won't zoom if 16px or larger */
+  -webkit-appearance: none;
 }

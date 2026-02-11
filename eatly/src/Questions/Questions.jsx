@@ -45,19 +45,19 @@ function Questions() {
         <button
           onClick={() => handleAnswer("mood", "Happy")}
           //classname has iternary operator for when selected
-          className={answers.mood === "Happy" ? "selected" : ""}
+          className={answers.mood === "Happy" ? "selected" : "question-button"}
         >
           Happy
         </button>
         <button
           onClick={() => handleAnswer("mood", "Sad")}
-          className={answers.mood === "Sad" ? "selected" : ""}
+          className={answers.mood === "Sad" ? "selected" : "  question-button"}
         >
           Sad
         </button>
         <button
           onClick={() => handleAnswer("mood", "Tired")}
-          className={answers.mood === "Tired" ? "selected" : ""}
+          className={answers.mood === "Tired" ? "selected" : "question-button"}
         >
           Tired
         </button>
@@ -67,19 +67,19 @@ function Questions() {
         {/* button group with similar funciton, updates time field */}
         <button
           onClick={() => handleAnswer("time", "Quick")}
-          className={answers.time === "Quick" ? "selected" : ""}
+          className={answers.time === "Quick" ? "selected" : "question-button"}
         >
           Quick bite (under 30 mins)
         </button>
         <button
           onClick={() => handleAnswer("time", "Moderate")}
-          className={answers.time === "Moderate" ? "selected" : ""}
+          className={answers.time === "Moderate" ? "selected" : "question-button"}
         >
           Moderate (30 mins - 1 hour)
         </button>
         <button
           onClick={() => handleAnswer("time", "Leisure")}
-          className={answers.time === "Leisure" ? "selected" : ""}
+          className={answers.time === "Leisure" ? "selected" : "question-button"}
         >
           Leisurely (over 1 hour)
         </button>
@@ -89,19 +89,19 @@ function Questions() {
         {/* button group with similar function, updates budget field */}
         <button
           onClick={() => handleAnswer("budget", "Cheap")}
-          className={answers.budget === "Cheap" ? "selected" : ""}
+          className={answers.budget === "Cheap" ? "selected" : "question-button"}
         >
           Cheap
         </button>
         <button
           onClick={() => handleAnswer("budget", "Moderate")}
-          className={answers.budget === "Moderate" ? "selected" : ""}
+          className={answers.budget === "Moderate" ? "selected" : "question-button"}
         >
           Moderate
         </button>
         <button
           onClick={() => handleAnswer("budget", "Expensive")}
-          className={answers.budget === "Expensive" ? "selected" : ""}
+          className={answers.budget === "Expensive" ? "selected" : "question-button"}
         >
           Expensive
         </button>
@@ -111,25 +111,25 @@ function Questions() {
         {/* button group with previous function, updates company field */}
         <button
           onClick={() => handleAnswer("company", "Solo")}
-          className={answers.company === "Solo" ? "selected" : ""}
+          className={answers.company === "Solo" ? "selected" : "question-button"}
         >
           Solo
         </button>
         <button
           onClick={() => handleAnswer("company", "Date")}
-          className={answers.company === "Date" ? "selected" : ""}
+          className={answers.company === "Date" ? "selected" : "question-button"}
         >
           Partner/Date
         </button>
         <button
           onClick={() => handleAnswer("company", "Family")}
-          className={answers.company === "Family" ? "selected" : ""}
+          className={answers.company === "Family" ? "selected" : "question-button"}
         >
           Family/Friends
         </button>
         <button
           onClick={() => handleAnswer("company", "Group")}
-          className={answers.company === "Group" ? "selected" : ""}
+          className={answers.company === "Group" ? "selected" : "question-button"}
         >
           Large group
         </button>

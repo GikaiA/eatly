@@ -21,7 +21,7 @@
   margin-bottom: 25px;
 }
 
-button {
+/* .question-button {
   margin-top: 20px;
   padding: 12px 24px;
   font-size: 21px !important;
@@ -34,10 +34,37 @@ button {
   transition-duration: 0.3s;
 }
 
-button.selected {
+.selected {
   background-color: #a85c3a !important;
+  border-radius: 8px !important;
+  color: white;
+  font-weight: bold;
+  border: none;
+    padding: 12px 24px;
+
+} */
+
+.question-button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 21px !important;
+  border-radius: 8px !important;
+  background-color: #d4744a;
+  color: white;
+  font-weight: bold;
+  border: none;
+  margin-left: 10px;
+  transition-duration: 0.3s;
 }
 
+.selected {
+  background-color: #a85c3a !important;
+  border-radius: 8px !important;
+  color: white;
+  font-weight: bold;
+  border: none;
+  padding: 10px 15px;
+}
 .find-restaurants-button {
   margin-top: 15px;
   background-color: #d4744a;
@@ -70,11 +97,11 @@ button.selected {
     margin-bottom: 20px;
   }
 
-  button {
+  .question-button {
     font-size: 18px !important;
     padding: 10px 20px;
     margin-left: 5px;
-    
+    gap: 10px;
   }
 
   .find-restaurants-button {
@@ -110,11 +137,10 @@ button.selected {
     margin-bottom: 15px;
   }
 
-  button {
+  .question-button {
     font-size: 16px !important;
     padding: 10px 15px;
     margin-left: 0;
-    width: 100%;
     max-width: 300px;
     margin: 5px auto;
   }
@@ -123,6 +149,6 @@ button.selected {
     font-size: 16px;
     padding: 10px 20px;
     width: 100%;
-    max-width: 300px;
+    /* max-width: 300px; */
   }
 }
