@@ -80,6 +80,7 @@ function Register() {
           placeholder="First Name"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
+          onTouchStart={(e) => e.stopPropagation()}
           className="register-field"
         />
 
@@ -89,6 +90,7 @@ function Register() {
           placeholder="Last Name"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
+          onTouchStart={(e) => e.stopPropagation()}
           className="register-field"
         />
 
@@ -98,6 +100,7 @@ function Register() {
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          onTouchStart={(e) => e.stopPropagation()}
           className="register-field"
         />
 
@@ -107,6 +110,7 @@ function Register() {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          onTouchStart={(e) => e.stopPropagation()}
           className="register-field"
         />
 

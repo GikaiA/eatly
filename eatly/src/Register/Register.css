@@ -26,15 +26,18 @@
   border: 1px solid #ccc;
   background-color: #ffffff;
 
+  /* Critical mobile fixes */
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  -webkit-tap-highlight-color: transparent;
-  touch-action: manipulation;
-  
-  /* Prevent iOS styling */
-  -webkit-border-radius: 8px;
   pointer-events: auto !important;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: text;
+  -webkit-user-select: text;
+
+  /* Prevent zoom on iOS */
+  -webkit-text-size-adjust: 100%;
 }
 
 .register-button {
@@ -80,6 +83,11 @@ a {
 
   .register-button {
     font-size: 18px;
+    pointer-events: auto !important;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
   .register-title {
@@ -107,6 +115,14 @@ a {
   .register-button {
     font-size: 16px;
     padding: 10px;
+    pointer-events: auto !important;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+
+    /* Minimum touch target size */
+    min-height: 44px;
   }
 
   .register-title {
