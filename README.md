@@ -20,7 +20,7 @@ Eatly is a mood-based food recommendation web app that helps users discover rest
 
 ## 🌐 Live Demo
 🚀 **Deployed App:**  
-_Link coming soon_
+[_Deployed Link_](https://eatly-ci.netlify.app)
 
 ## 📦 Getting Started
 
