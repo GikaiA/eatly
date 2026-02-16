@@ -62,7 +62,9 @@ function Landing() {
         <p className="mood-sentence">
           Let the mood guide you to the perfect meal.
         </p>
-        <button className="get-started-button">Get Started</button>
+        <Link to="/register">
+          <button className="get-started-button">Try Now</button>
+        </Link>
         <p className="get-started">
           Already have an account? Click{" "}
           <Link to="/login" className="link">
