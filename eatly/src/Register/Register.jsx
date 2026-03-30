@@ -11,11 +11,11 @@ import { useNavigate, Link } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 
 function Register() {
-  // Remove 'async' here
-  const [firstName, setFirstName] = useState(""); // Add these back
+  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailError, setEmailError] = useState(""); //error state
 
   const navigate = useNavigate();
 
@@ -30,6 +30,23 @@ function Register() {
       );
       const user = userCredential.user; // Get user from response
 
+      // Validate email format
+      if (!validateEmail(email)) {
+        alert("Please enter a valid email address");
+        return;
+      }
+
+      // Validate other fields
+      if (!firstName || !lastName || !password) {
+        alert("Please fill in all fields");
+        return;
+      }
+
+      if (password.length < 6) {
+        alert("Password must be at least 6 characters");
+        return;
+      }
+
       // Save to Firestore - INSIDE this function
       await setDoc(doc(db, "users", user.uid), {
         firstName: firstName,
@@ -41,6 +58,14 @@ function Register() {
       navigate("/questions");
     } catch (error) {
       console.error("Error registering user: ", error);
+
+      if (error.code === "auth/email-already-in-use") {
+        alert("This email is already registered");
+      } else if (error.code === "auth/invalid-email") {
+        alert("Invalid email format");
+      } else {
+        alert("Registration failed. Please try again.");
+      }
     }
   };
 
@@ -66,6 +91,24 @@ function Register() {
       navigate("/questions");
     } catch (error) {
       console.error("Google sign-in failed: ", error);
+    }
+  };
+
+  //email domain check
+  const validateEmail = (email) => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
+
+  const handleEmailChange = (e) => {
+    const value = e.target.value;
+    setEmail(value);
+
+    if (value && !validateEmail(value)) {
+      setEmailError("Please enter a valid email address domain");
+    } else {
+      setEmailError("");
     }
   };
 
@@ -99,10 +142,10 @@ function Register() {
           type="email"
           placeholder="Email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          onTouchStart={(e) => e.stopPropagation()}
-          className="register-field"
+          onChange={handleEmailChange} 
+          className={`register-field ${emailError ? "error" : ""}`}
         />
+        {emailError && <p className="error-message">{emailError}</p>}
 
         <label>Password</label>
         <input
