@@ -1,147 +1,148 @@
 import React, { useState } from "react";
 import "./Questions.css";
 import { useNavigate } from "react-router-dom";
+import { searchNearbyRestaurants } from "../foursqaure";
 
 function Questions() {
-  //navigate function
   const navigate = useNavigate();
-
-  // use state to hold answer choices
   const [answers, setAnswers] = useState({
-    mood: "",
-    time: "",
+    location: "",
+    foodType: "",
     budget: "",
+    mood: "",
     company: "",
-    dietary: "",
   });
+  const [coords, setCoords] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  //function to handle answer selection (question, answer is parameters)
   const handleAnswer = (question, value) => {
-    // If they click the same button that's already selected, clear it
-  if (answers[question] === value) {
-    setAnswers({
-      ...answers,
-      [question]: '' // Deselect by setting to empty string
-    });
-  } else {
-    // Otherwise, select the new button
-    setAnswers({
-      ...answers,
-      [question]: value
-    });
-  }
-};
-
-  //see results, including navigation
-  const handleSubmit = () => {
-    navigate("/results", { state: { answers } });
+    setAnswers((prev) => ({
+      ...prev,
+      [question]: prev[question] === value ? "" : value,
+    }));
   };
+
+  const handleUseLocation = () => {
+    if (!navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        const { latitude, longitude } = pos.coords;
+        setCoords({ lat: latitude, lng: longitude });
+        setAnswers((prev) => ({ ...prev, location: "My current location" }));
+      },
+      () => setError("Could not get your location.")
+    );
+  };
+
+  const handleSubmit = async () => {
+    if (!answers.location) {
+      setError("Please enter a location or use your current location.");
+      return;
+    }
+    setError("");
+    setLoading(true);
+    try {
+      const restaurantData = await searchNearbyRestaurants({
+        location: answers.location,
+        foodType: answers.foodType,
+        budget: answers.budget,
+        coords,
+      });
+      navigate("/results", { state: { answers, restaurantData } });
+    // eslint-disable-next-line no-unused-vars
+    } catch (err) {
+      setError("Failed to find restaurants. Check your location and try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="questions">
-      <h2 className="question-title">Questions</h2>
-      <h3>How are you feeling right now?</h3>
-      <div className="button-group">
-        {/* button group with handleAnswer function. updates mood field */}
-        <button
-          onClick={() => handleAnswer("mood", "Happy")}
-          //classname has iternary operator for when selected
-          className={answers.mood === "Happy" ? "selected" : "question-button"}
-        >
-          Happy
-        </button>
-        <button
-          onClick={() => handleAnswer("mood", "Sad")}
-          className={answers.mood === "Sad" ? "selected" : "  question-button"}
-        >
-          Sad
-        </button>
-        <button
-          onClick={() => handleAnswer("mood", "Tired")}
-          className={answers.mood === "Tired" ? "selected" : "question-button"}
-        >
-          Tired
+      <h2 className="question-title">Find Your Next Meal</h2>
+
+      <h3>Where are you?</h3>
+      <div className="location-row">
+        <input
+          className="location-input"
+          type="text"
+          placeholder="City or neighborhood (e.g. Brooklyn, NY)"
+          value={answers.location === "My current location" ? "" : answers.location}
+          onChange={(e) => {
+            setCoords(null);
+            setAnswers((prev) => ({ ...prev, location: e.target.value }));
+          }}
+        />
+        <button className="use-location-btn" onClick={handleUseLocation}>
+          📍 Use My Location
         </button>
       </div>
-      <h3>How much time do you have?</h3>
+      {answers.location === "My current location" && (
+        <p className="location-confirmed">📍 Using your current location</p>
+      )}
+
+      <h3>What are you craving?</h3>
       <div className="button-group">
-        {/* button group with similar funciton, updates time field */}
-        <button
-          onClick={() => handleAnswer("time", "Quick")}
-          className={answers.time === "Quick" ? "selected" : "question-button"}
-        >
-          Quick bite (under 30 mins)
-        </button>
-        <button
-          onClick={() => handleAnswer("time", "Moderate")}
-          className={answers.time === "Moderate" ? "selected" : "question-button"}
-        >
-          Moderate (30 mins - 1 hour)
-        </button>
-        <button
-          onClick={() => handleAnswer("time", "Leisure")}
-          className={answers.time === "Leisure" ? "selected" : "question-button"}
-        >
-          Leisurely (over 1 hour)
-        </button>
+        {["American", "Italian", "Mexican", "Asian", "Healthy", "Anything"].map((type) => (
+          <button
+            key={type}
+            onClick={() => handleAnswer("foodType", type)}
+            className={answers.foodType === type ? "selected" : "question-button"}
+          >
+            {type}
+          </button>
+        ))}
       </div>
+
       <h3>What's your budget?</h3>
       <div className="button-group">
-        {/* button group with similar function, updates budget field */}
-        <button
-          onClick={() => handleAnswer("budget", "Cheap")}
-          className={answers.budget === "Cheap" ? "selected" : "question-button"}
-        >
-          Cheap
-        </button>
-        <button
-          onClick={() => handleAnswer("budget", "Moderate")}
-          className={answers.budget === "Moderate" ? "selected" : "question-button"}
-        >
-          Moderate
-        </button>
-        <button
-          onClick={() => handleAnswer("budget", "Expensive")}
-          className={answers.budget === "Expensive" ? "selected" : "question-button"}
-        >
-          Expensive
-        </button>
+        {["Cheap", "Moderate", "Expensive"].map((b) => (
+          <button
+            key={b}
+            onClick={() => handleAnswer("budget", b)}
+            className={answers.budget === b ? "selected" : "question-button"}
+          >
+            {b}
+          </button>
+        ))}
       </div>
+
+      <h3>How are you feeling?</h3>
+      <div className="button-group">
+        {["Happy", "Sad", "Tired"].map((m) => (
+          <button
+            key={m}
+            onClick={() => handleAnswer("mood", m)}
+            className={answers.mood === m ? "selected" : "question-button"}
+          >
+            {m}
+          </button>
+        ))}
+      </div>
+
       <h3>Who are you dining with?</h3>
       <div className="button-group">
-        {/* button group with previous function, updates company field */}
-        <button
-          onClick={() => handleAnswer("company", "Solo")}
-          className={answers.company === "Solo" ? "selected" : "question-button"}
-        >
-          Solo
-        </button>
-        <button
-          onClick={() => handleAnswer("company", "Date")}
-          className={answers.company === "Date" ? "selected" : "question-button"}
-        >
-          Partner/Date
-        </button>
-        <button
-          onClick={() => handleAnswer("company", "Family")}
-          className={answers.company === "Family" ? "selected" : "question-button"}
-        >
-          Family/Friends
-        </button>
-        <button
-          onClick={() => handleAnswer("company", "Group")}
-          className={answers.company === "Group" ? "selected" : "question-button"}
-        >
-          Large group
-        </button>
+        {["Solo", "Date", "Family", "Group"].map((c) => (
+          <button
+            key={c}
+            onClick={() => handleAnswer("company", c)}
+            className={answers.company === c ? "selected" : "question-button"}
+          >
+            {c}
+          </button>
+        ))}
       </div>
-      {/* <h3>Any dietary restrictions?</h3>
-      <div className="button-group">
-        <button>None</button>
-        <button>Vegetarian</button>
-        <button>Vegan</button>
-        <button>Gluten-free</button>
-      </div> */}
-      <button onClick={handleSubmit} className="find-restaurants-button">Find Resurantants</button>
+
+      {error && <p className="error-message">{error}</p>}
+
+      <button
+        onClick={handleSubmit}
+        className="find-restaurants-button"
+        disabled={loading}
+      >
+        {loading ? "Finding restaurants..." : "Find Restaurants"}
+      </button>
     </div>
   );
 }

@@ -58,3 +58,38 @@
     margin-top: 10px;
     font-weight: bold;
 }
+
+.results-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.results-context {
+  font-size: 16px;
+  color: #666;
+  margin: 4px 0 12px;
+}
+
+.search-again-btn {
+  background: none;
+  border: 2px solid #d4744a;
+  color: #d4744a;
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.cuisine-badge {
+  display: inline-block;
+  background-color: #f5e6dc;
+  color: #d4744a;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}

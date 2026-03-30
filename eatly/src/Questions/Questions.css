@@ -21,28 +21,6 @@
   margin-bottom: 25px;
 }
 
-/* .question-button {
-  margin-top: 20px;
-  padding: 12px 24px;
-  font-size: 21px !important;
-  border-radius: 8px !important;
-  background-color: #d4744a;
-  color: white;
-  font-weight: bold;
-  border: none;
-  margin-left: 10px;
-  transition-duration: 0.3s;
-}
-
-.selected {
-  background-color: #a85c3a !important;
-  border-radius: 8px !important;
-  color: white;
-  font-weight: bold;
-  border: none;
-    padding: 12px 24px;
-
-} */
 
 .question-button {
   margin-top: 20px;
@@ -74,6 +52,53 @@
   border-color: transparent;
   color: white;
   font-weight: bold;
+}
+
+.location-row {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.location-input {
+  padding: 10px 16px;
+  font-size: 18px;
+  border: 2px solid #d4744a;
+  border-radius: 8px;
+  width: 320px;
+  outline: none;
+}
+
+.use-location-btn {
+  padding: 10px 16px;
+  font-size: 16px;
+  background-color: white;
+  color: #d4744a;
+  border: 2px solid #d4744a;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.location-confirmed {
+  color: #d4744a;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.error-message {
+  color: #c0392b;
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.find-restaurants-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 /* MOBILE RESPONSIVENESS */
@@ -150,3 +175,5 @@
     text-align: center;
   }
 }
+
+
