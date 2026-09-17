@@ -11,6 +11,7 @@ Eatly is a mood-based food recommendation web app that helps users discover rest
 ## 🧰 Technologies Used
 - Vite
 - JavaScript
+- Foursquare API
 - React
 - React Icons
 - React Bootstrap
